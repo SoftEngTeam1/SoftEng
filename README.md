@@ -18,3 +18,10 @@
     Implement crypto stock recommendations
     Based on stocks invested
     News spotlight focus based on analyst personalizations
+
+
+# Functionality Capabilities
+  - Create User
+  - Edit User
+  - Delete User
+  - Aggregate stock data across user profiles
