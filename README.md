@@ -8,21 +8,22 @@
 
   - For instance if a user has 30% of their porfolio in Fidelity, 20% in Robinhood, 20% in Coinbase Pro, and 30% in TD Amitrade, this website would allow the user to only need to sign into this account to get an analysis of all of their finances at the same time. 
 
-
 ## SetUp 
 
   Make Prod
-    - make
+  - makes the "make tests" unit tests in the SoftEng repository
+  - commits and pushes all modifications
 
   make_dev_env
-  - Running this will install all of the requirements from the requirements-dev.txt file. 
-  - 
+  - Running this will install all of the requirements from the requirements-dev.txt file.
 
 
+## Actions
 
-
+- User can login to access their account
 
 ## GOALS
+
     Implement bots
     Have a bot watch market shorts (?)
     Focus on stocks alone vs focus on crypto
@@ -32,10 +33,3 @@
     Implement crypto stock recommendations
     Based on stocks invested
     News spotlight focus based on analyst personalizations
-
-
-# Functionality Capabilities
-  - Create User
-  - Edit User
-  - Delete User
-  - Aggregate stock data across user profiles
