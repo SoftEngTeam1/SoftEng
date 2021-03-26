@@ -17,10 +17,13 @@
   make_dev_env
   - Running this will install all of the requirements from the requirements-dev.txt file.
 
-
-## Actions
-
-- User can login to access their account
+# Actions
+  - Create User
+  - Edit User
+  - Delete User
+  - Aggregate stock data across user profile
+  - Visualize stocks portfolio
+  - Visualize different ranges of history (6mo, 1 yr, etc.)
 
 ## GOALS
 
