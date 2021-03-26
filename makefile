@@ -10,7 +10,7 @@ tests: FORCE
 	nosetests --exe --with-coverage --verbose --cover-package=SoftEng
 
 prod: tests
-	git commit -a
+	git commit -a 
 	git push origin main
 
 %.py: FORCE
