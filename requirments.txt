@@ -1,0 +1,9 @@
+# for robinhood.py 
+matplotlib
+numpy>=1.18.1
+pandas>=1.0.1
+robin-stocks==1.0.0.7
+ta>=0.5.11
+
+#
+flask

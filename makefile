@@ -12,7 +12,7 @@ tests: FORCE
 prod: tests
 	-git commit -a
 	-git pull
-
+	- git push
 
 %.py: FORCE
 	nosetests tests.test_$* --nocapture
