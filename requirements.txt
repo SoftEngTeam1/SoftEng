@@ -1,0 +1,9 @@
+# for robinhood.py 
+matplotlib
+numpy
+pandas
+robin-stocks
+ta
+
+#
+flask
