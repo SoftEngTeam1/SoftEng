@@ -10,8 +10,9 @@ tests: FORCE
 	nosetests --exe --with-coverage --verbose --cover-package=SoftEng
 
 prod: tests
-	git commit -a 
-	git push origin main
+	-git commit -a
+	-git pull
+
 
 %.py: FORCE
 	nosetests tests.test_$* --nocapture
