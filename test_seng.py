@@ -1,6 +1,7 @@
 from unittest import TestCase
 
-import seng
+#import seng
+importlib.import_module(seng)
 
 
 class SengTestCase(TestCase):
