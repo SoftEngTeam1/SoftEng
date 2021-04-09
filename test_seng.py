@@ -1,8 +1,9 @@
 from unittest import TestCase
 
-#import seng
+
 import importlib
 importlib.import_module(seng)
+import seng
 
 
 class SengTestCase(TestCase):
