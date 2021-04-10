@@ -1,3 +1,4 @@
+'''
 from unittest import TestCase
 
 
@@ -12,3 +13,4 @@ class SengTestCase(TestCase):
 
     def test_another_func(self):
         self.assertTrue(seng.another_func() == seng.SUCCESS)
+'''
