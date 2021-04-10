@@ -17,7 +17,7 @@
   make_dev_env
   - Running this will install all of the requirements from the requirements-dev.txt file.
 
-# Actions
+# Actionable Requirements
   - Create User
   - Edit User
   - Delete User
