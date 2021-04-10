@@ -10,6 +10,7 @@ tests: FORCE
 	nosetests --exe --with-coverage --verbose --cover-package=SoftEng
 
 prod: tests
+	hello.py
 	-git commit -a
 	-git pull
 	- git push
