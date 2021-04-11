@@ -17,22 +17,25 @@
   make_dev_env
   - Running this will install all of the requirements from the requirements-dev.txt file.
 
+  make tests 
+  - makes unit tests in the SoftEng repository 
+
 # Actionable Requirements
-  - Create User
-  - Edit User
+  - Create User (automate signing into all of their chosen finanical accounts using key pairs) 
+  - Edit User (account, finanical accounts, saved lists of tickers) 
   - Delete User
-  - Aggregate stock data across user profile
-  - Visualize stocks portfolio
+  - Aggregate stock data across user profile (select accounts, tickers, ratios, and other algorithmic statistics)
+  - Visualize stocks portfolio (graphical) m
   - Visualize different ranges of history (6mo, 1 yr, etc.)
 
 ## GOALS
 
-    Implement bots
-    Have a bot watch market shorts (?)
-    Focus on stocks alone vs focus on crypto
-    Combining stocks with crypto is a specialty that there is not a great solution for so far → great niche audience and market
-    No centralized visual feedback on crypto stocks
-    Could use inspiration from Robinhood API
-    Implement crypto stock recommendations
-    Based on stocks invested
-    News spotlight focus based on analyst personalizations
+   - Implement bots
+   - Have a bot watch market shorts (?)
+   - Focus on stocks alone vs focus on crypto
+   - Combining stocks with crypto is a specialty that there is not a great solution for so far → great niche audience and market
+   - No centralized visual feedback on crypto stocks
+   - Could use inspiration from Robinhood API
+   - Implement crypto stock recommendations
+   - Based on stocks invested
+   - News spotlight focus based on analyst personalizations
