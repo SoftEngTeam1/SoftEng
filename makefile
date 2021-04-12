@@ -7,7 +7,7 @@ dev_env: FORCE
 
 tests: FORCE
 	$(PYLINT) *.py
-	nosetests ./tests/hello.py --exe --verbose --cover-package=SoftEng
+	nosetests hello.py --exe --verbose --cover-package=SoftEng
 
 prod: 
 	- git commit -a
