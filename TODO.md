@@ -15,6 +15,7 @@ Callahan has a lot of templates for this
 
 
 ## Resources 
+- https://education.github.com/pack    #free resources for students such as Heroku, AZURE, MongoDB, and domains
 - https://github.com/Denisfench/messaging
 - https://gcallah.github.io/socnet/webapp.html#/
 - gcallah/GameAPI   
