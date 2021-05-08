@@ -22,6 +22,7 @@ Callahan has a lot of templates for this
     - repo to look at 
 - Fred API 
     - Request API Key
+- Heroku Introduction https://www.youtube.com/watch?v=QTOkqzCTGxw
 
 
 ## Think about 
