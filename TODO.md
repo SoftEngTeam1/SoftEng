@@ -23,7 +23,8 @@ Callahan has a lot of templates for this
 - Fred API 
     - Request API Key
 - Heroku Introduction https://www.youtube.com/watch?v=QTOkqzCTGxw
-
+  - https://stackabuse.com/deploying-a-flask-application-to-heroku/
+  - https://dev.to/techparida/how-to-deploy-a-flask-app-on-heroku-heb
 
 ## Think about 
 - Storing API keys, or user information for security issues if submit as an app 
