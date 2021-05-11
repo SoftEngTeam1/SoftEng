@@ -26,6 +26,9 @@
   - heroku login 
   - heroku local web (http://127.0.0.1:5000/)
 
+  Update Heroku 
+  - git push heroku main (update from the main branch)
+
 # Actionable Requirements
   - Create User (automate signing into all of their chosen finanical accounts using key pairs) 
   - Edit User (account, finanical accounts, saved lists of tickers) 
