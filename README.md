@@ -20,6 +20,12 @@
   make tests 
   - makes unit tests in the SoftEng repository 
 
+  Run Heroku 
+  - Its located in the venv/ folder (make sure to be logged in)
+  - pip install -r requirements.txt  (make sure to have correct installations)
+  - heroku login 
+  - heroku local web (http://127.0.0.1:5000/)
+
 # Actionable Requirements
   - Create User (automate signing into all of their chosen finanical accounts using key pairs) 
   - Edit User (account, finanical accounts, saved lists of tickers) 
