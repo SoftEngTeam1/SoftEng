@@ -35,11 +35,12 @@
   - Delete User
   - Aggregate stock data across user profile (select accounts, tickers, ratios, and other algorithmic statistics)
   - Visualize stocks portfolio (graphical) m
-  - Visualize different ranges of history (6mo, 1 yr, etc.)
+
 
 ## GOALS
 
    - Implement bots
+   - Visualize different ranges of history (6mo, 1 yr, etc.)
    - Have a bot watch market shorts (?)
    - Focus on stocks alone vs focus on crypto
    - Combining stocks with crypto is a specialty that there is not a great solution for so far → great niche audience and market
