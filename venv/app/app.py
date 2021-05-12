@@ -13,7 +13,6 @@ app = Flask(__name__)
 #					   charset='utf8mb4',
 #					   cursorclass=pymysql.cursors.DictCursor)
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -41,7 +40,6 @@ def index():
 def generic_login():
     return render_template('generic_login.html')
 
-
 #authenticates and checks to see if user exits
 @app.route('/generic_login_auth', methods=['GET', 'POST'])
 def cus_login_auth():
@@ -58,13 +56,45 @@ def cus_login_auth():
 		#creates a session for the the user
 		#session is a built in
 		session['username'] = email
-		return redirect(url_for('index')) #i can make a homepage
+		return redirect(url_for('home')) #i can make a homepage
 	else:
 		#returns an error message to the html page
 		error = 'Invalid login or email'
 		return render_template('generic_login.html', error=error)
 
-if __name__ == "__main__":
+@app.route('/generic_register', methods=['GET', 'POST'])
+def cus_register():
+	return render_template('generic_register.html')
 
+@app.route('/generic_register_auth', methods=['GET', 'POST'])
+def generic_register_auth():
+    email = request.form['email']
+    cursor = conn.cursor()
+    query = 'SELECT * FROM users WHERE email = %s'
+    cursor.execute(query, (email))
+    data = cursor.fetchone()
+    error = None
+    if(data):
+        #If the previous query returns data, then user exists
+        error = "This user already exists! Login instead."
+        return render_template('generic_register.html', error = error)
+    else:
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        ins = '''INSERT INTO user (name,email,password) VALUES (%s,%s,MD5(%s))'''
+        cursor.execute(ins, (name,email,password))
+        conn.commit()
+        cursor.close()
+        return redirect('/generic_login')
+
+
+@app.route('/home', methods=['GET', 'POST'])
+def homepage():
+    #Jasmine's code here: 
+    email = session['username']
+    return render_template('home.html')
+
+
+if __name__ == "__main__":
 	app.run('127.0.0.1', 5000, debug = True)
- 
