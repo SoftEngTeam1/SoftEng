@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <title>Welcome User!</title>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        img {
+            max-width: 30%;
+            max-height: 30%;
+            padding-left: 30%;
+        }
+
+        .menu {}
+
+        .stock {
+            align-self: center;
+        }
+
+        .news {
+            background-color: lightblue;
+            border-style: inset;
+            border-width: 10px;
+            position: absolute;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to your Profile!</h1>
+    <div class="news">
+        <h3><strong>Stock News You Can Use</strong></h3>
+        <dl>
+            <dt>
+                <a href="https://finance.yahoo.com/m/b8a7bd61-5e25-386b-8bcd-cdd4356a8824/what-does-inflation-mean-for.html" target="_blank" rel="noopener noreferrer">
+                    Inflation and the Stock Market
+                </a>
+            </dt>
+            <dd>
+                Inflation is typically a good thing for stocks - so why is it scaring investors now?<br />
+                <img src="{{url_for('static', filename='inflation.jpg')}}" alt="Inflation is looming" />
+            </dd>
+            <dt>
+                <a href="https://finance.yahoo.com/m/013f3a26-06d7-3bb6-8811-ddbc901f9eec/these-are-the-best-robinhood.html" target="_blank" rel="noopener noreferrer">
+                    Stocks to Stalk
+                </a>
+            </dt>
+            <dd>
+                These Robinhood stocks are getting a lot of attention right now. Maybe one would fit your portfolio.<br />
+                <img src="{{url_for('static', filename='robinhood.jpg')}}" alt="Robinhood App" />
+            </dd>
+            <dt>
+                <a href="https://finance.yahoo.com/m/b09c9575-8abd-3f64-9e18-3aa6fe6e470e/fake-meat-is-here-to-stay-.html" target="_blank" rel="noopener noreferrer">
+                    There's Real Money in Faux-Meats
+                </a>
+            </dt>
+            <dd>
+                Here are some stocks to get your cut.<br />
+                <img src="{{url_for('static', filename='plant_meat.jpg')}}" alt="Beyond Beef vs Impossible Burger" />
+            </dd>
+            <!--C:\Users\jam14\Desktop\NYU General\Classes\Spring 2021\Software Engineering\Test\venv\app\-->
+
+        </dl>
+    </div>
+</body>
+ 
+</html>

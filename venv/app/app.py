@@ -47,6 +47,7 @@ def robin_login_auth():
 #GENERIC USER CODE#
 
 # Define route for login
+<<<<<<< Updated upstream
 @app.route('/generic_login')
 def generic_login():
     return render_template('generic_login.html')
@@ -113,3 +114,15 @@ def logout():
 
 if __name__ == "__main__":
 	app.run('127.0.0.1', 5000, debug = True)
+=======
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+# Define route for user profile
+@app.route('/user', methods=['GET', 'POST'])
+def profile():
+    return render_template('profile.html')
+
+>>>>>>> Stashed changes
