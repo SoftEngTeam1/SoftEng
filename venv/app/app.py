@@ -4,16 +4,6 @@ import pymysql.cursors
 app = Flask(__name__)
 app.secret_key = b'_5#adsfalksf"F4Q8adsfj]/'
 
-#UNCOMMENT WHEN SET UP
-#Configure MySQL
-#conn = pymysql.connect(host='localhost',
-#                       port=8889, #may need to change dependant on if youre using XAMPP, MAMP, WAMP, etc.
-#					   user='root',
-#					   password='root',
-#					   db='users',
-#					   charset='utf8mb4',
-#					   cursorclass=pymysql.cursors.DictCursor)
-
 # NOTE : Create user database in PhpMyAdmin. Otherwise this won't work
 conn = pymysql.connect(host='localhost',
                       port=8889, #may need to change dependant on if youre using XAMPP, MAMP, WAMP, etc.
@@ -105,6 +95,10 @@ def homepage():
     email = session['username']
     return render_template('home.html')
 
+@app.route('/logout')
+def logout():
+	session.pop('username')
+	return redirect('/')
 
 if __name__ == "__main__":
 	app.run('127.0.0.1', 5000, debug = True)
