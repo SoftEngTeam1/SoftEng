@@ -6,8 +6,9 @@ app.secret_key = b'_5#adsfalksf"F4Q8adsfj]/'
 
 # NOTE : Create user database in PhpMyAdmin. Otherwise this won't work
 conn = pymysql.connect(host='localhost',
-                      port=8889, #may need to change dependant on if youre using XAMPP, MAMP, WAMP, etc.
-					   user='root',
+                    #   port=8889, #may need to change dependant on if youre using XAMPP, MAMP, WAMP, etc.
+					   port=3306, #Eliot
+                       user='root',
 					   password='root',
 					   db='users',
 					   charset='utf8mb4',
@@ -25,7 +26,7 @@ import robin_stocks as robin
 def robin_login():
     return render_template('robin_login.html')
 
-#TODO 
+#TODO
 @app.route('/robin_login_auth', methods=['GET', 'POST'])
 def robin_login_auth():
 #    USERNAME = input("Enter Robinhood Username: ")
@@ -35,8 +36,7 @@ def robin_login_auth():
     print("USERNAME *(*********",username)
     try:
         robin.login(username, password, store_session=False)
-        #TODO TEMP to render to index
-        return render_template('index.html', error=error)
+        return render_template('home.html', error=error)
         # return redirect(url_for('home'))
     except Exception:
         # print("Invalid login attempt to Robinhood.")
@@ -54,29 +54,32 @@ def generic_login():
 
 #authenticates and checks to see if user exits
 @app.route('/generic_login_auth', methods=['GET', 'POST'])
-def cus_login_auth():
-	email = request.form['email']
-	password = request.form['password']
-	cursor = conn.cursor()
-    #may need to change password encrpytion
-	query = 'SELECT * FROM customer WHERE email = %s and password = MD5(%s)' #this is for password encryption, we dont necessarily need to do this
-	cursor.execute(query, (email, password))
-	data = cursor.fetchone()
-	cursor.close()
-	error = None
-	if(data):
-		#creates a session for the the user
-		#session is a built in
-		session['username'] = email
-		return redirect('/home') #i can make a homepage
-	else:
-		#returns an error message to the html page
-		error = 'Invalid login or email'
-		return render_template('generic_login.html', error=error)
+def generic_login_auth():
+    # grabs information from the forms
+    email = request.form['email']
+    password = request.form['password']
+    cursor = conn.cursor()
+    # password = request.form['password'] + SALT
+    # hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    query = 'SELECT * FROM customer WHERE email = %s and password = %s'
+    cursor.execute(query, (email, password))
+    data = cursor.fetchone()
+    error = None
+    cursor.close()
+    if (data):
+        # creates a session for the the user
+        # session is a built in
+        session['username'] = data['email']
+        # return redirect(url_for('home'))
+        return redirect('/home')
+    else:
+        # returns an error message to the html page
+        error = 'Invalid email or password'
+        return render_template('generic_login.html', error=error)
 
-# @app.route('/generic_register', methods=['GET', 'POST'])
-# def cus_register():
-# 	return render_template('generic_register.html')
+@app.route('/generic_register', methods=['GET', 'POST'])
+def generic_register():
+	return render_template('generic_register.html')
 
 @app.route('/generic_register_auth', methods=['GET', 'POST'])
 def generic_register_auth():
@@ -94,23 +97,22 @@ def generic_register_auth():
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
-        ins = '''INSERT INTO customer (name,email,password) VALUES (%s,%s,MD5(%s))'''
+        ins = '''INSERT INTO customer (name,email,password) VALUES (%s,%s,%s)'''
         cursor.execute(ins, (name,email,password))
         conn.commit()
         cursor.close()
         return redirect('/generic_login')
 
-
-# @app.route('/home', methods=['GET', 'POST'])
-# def homepage():
-#     #Jasmine's code here: 
-#     email = session['username']
-#     return render_template('home.html')
-
 @app.route('/logout')
 def logout():
 	session.pop('username')
 	return redirect('/')
+
+@app.route('/home', methods=['GET', 'POST'])
+def homepage():
+    #Jasmine's code here: 
+    email = session['username']
+    return render_template('home.html')
 
 if __name__ == "__main__":
 	app.run('127.0.0.1', 5000, debug = True)

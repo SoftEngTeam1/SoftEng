@@ -2,14 +2,17 @@ PYLINT = flake8
 
 FORCE:
 
-dev_env: FORCE 
+dev_env: FORCE
 	pip3 install -r requirements-dev.txt
 
 tests: FORCE
 	$(PYLINT) *.py
 	nosetests hello.py --exe --with-coverage --verbose --cover-package=SoftEng
 
-prod: 
+deploy:
+	python ./venv/app/app.py
+
+prod:
 	- git commit -a
 	- git pull
 	- git push
