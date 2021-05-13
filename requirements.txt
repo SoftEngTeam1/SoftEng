@@ -1,5 +1,5 @@
 #heroku 
--r ./venv/requirements.txt
+ ./venv/requirements.txt
 
 # for robinhood.py 
 matplotlib
