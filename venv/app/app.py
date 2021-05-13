@@ -55,12 +55,12 @@ def generic_login():
 @app.route('/generic_login_auth', methods=['GET', 'POST'])
 def generic_login_auth():
     # grabs information from the forms
-    username = request.form['username']
+    email = request.form['email']
     password = request.form['password']
     cursor = conn.cursor()
     # password = request.form['password'] + SALT
     # hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-    query = 'SELECT username, password FROM person WHERE username = %s and password = %s'
+    query = 'SELECT * FROM customer WHERE email = %s and password = %s'
     cursor.execute(query, (email, password))
     data = cursor.fetchone()
     error = None
@@ -68,12 +68,12 @@ def generic_login_auth():
     if (data):
         # creates a session for the the user
         # session is a built in
-        session['username'] = data['username']
-        return redirect(url_for('home'))
-        # return redirect('home.html')
+        session['username'] = data['email']
+        # return redirect(url_for('home'))
+        return redirect('/home')
     else:
         # returns an error message to the html page
-        error = 'Invalid username or password'
+        error = 'Invalid email or password'
         return render_template('generic_login.html', error=error)
 
 @app.route('/generic_register', methods=['GET', 'POST'])
