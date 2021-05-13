@@ -29,6 +29,13 @@
   Update Heroku 
   - git push heroku main (update from the main branch)
 
+  Database Setup
+  - Prerequisites: PyMySQL, MAMP, PhpMyAdmin, MySQL
+  - Start Servers on MAMP
+  - Have commands run in Create.sql
+  - Have app.py run (either on CLI or via tests)
+  - Located on Port 5000
+
 # Actionable Requirements
   - Create User (automate signing into all of their chosen finanical accounts using key pairs) 
   - Edit User (account, finanical accounts, saved lists of tickers) 
