@@ -2,16 +2,16 @@
 from flask import Flask, render_template, request, session, url_for, redirect, flash, abort
 import pymysql.cursors
 app = Flask(__name__)
+app.secret_key = b'_5#adsfalksf"F4Q8adsfj]/'
 
-#UNCOMMENT WHEN SET UP
-#Configure MySQL
-#conn = pymysql.connect(host='localhost',
-#                       port=8889, #may need to change dependant on if youre using XAMPP, MAMP, WAMP, etc.
-#					   user='root',
-#					   password='root',
-#					   db='users',
-#					   charset='utf8mb4',
-#					   cursorclass=pymysql.cursors.DictCursor)
+# NOTE : Create user database in PhpMyAdmin. Otherwise this won't work
+conn = pymysql.connect(host='localhost',
+                      port=8889, #may need to change dependant on if youre using XAMPP, MAMP, WAMP, etc.
+					   user='root',
+					   password='root',
+					   db='users',
+					   charset='utf8mb4',
+					   cursorclass=pymysql.cursors.DictCursor)
 
 @app.route('/')
 def index():
@@ -67,7 +67,7 @@ def cus_login_auth():
 		#creates a session for the the user
 		#session is a built in
 		session['username'] = email
-		return redirect(url_for('home')) #i can make a homepage
+		return redirect('/home') #i can make a homepage
 	else:
 		#returns an error message to the html page
 		error = 'Invalid login or email'
@@ -77,27 +77,27 @@ def cus_login_auth():
 # def cus_register():
 # 	return render_template('generic_register.html')
 
-# @app.route('/generic_register_auth', methods=['GET', 'POST'])
-# def generic_register_auth():
-#     email = request.form['email']
-#     cursor = conn.cursor()
-#     query = 'SELECT * FROM users WHERE email = %s'
-#     cursor.execute(query, (email))
-#     data = cursor.fetchone()
-#     error = None
-#     if(data):
-#         #If the previous query returns data, then user exists
-#         error = "This user already exists! Login instead."
-#         return render_template('generic_register.html', error = error)
-#     else:
-#         name = request.form['name']
-#         email = request.form['email']
-#         password = request.form['password']
-#         ins = '''INSERT INTO user (name,email,password) VALUES (%s,%s,MD5(%s))'''
-#         cursor.execute(ins, (name,email,password))
-#         conn.commit()
-#         cursor.close()
-#         return redirect('/generic_login')
+@app.route('/generic_register_auth', methods=['GET', 'POST'])
+def generic_register_auth():
+    email = request.form['email']
+    cursor = conn.cursor()
+    query = 'SELECT * FROM customer WHERE email = %s'
+    cursor.execute(query, (email))
+    data = cursor.fetchone()
+    error = None
+    if(data):
+        #If the previous query returns data, then user exists
+        error = "This user already exists! Login instead."
+        return render_template('generic_register.html', error = error)
+    else:
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        ins = '''INSERT INTO customer (name,email,password) VALUES (%s,%s,MD5(%s))'''
+        cursor.execute(ins, (name,email,password))
+        conn.commit()
+        cursor.close()
+        return redirect('/generic_login')
 
 
 # @app.route('/home', methods=['GET', 'POST'])
@@ -106,6 +106,10 @@ def cus_login_auth():
 #     email = session['username']
 #     return render_template('home.html')
 
+@app.route('/logout')
+def logout():
+	session.pop('username')
+	return redirect('/')
 
 if __name__ == "__main__":
 	app.run('127.0.0.1', 5000, debug = True)
