@@ -18,20 +18,31 @@ def index():
     return render_template('index.html')
 
 #ROBINHOOD CODE#
-#import robin_stocks as robin
+import robin_stocks as robin
 
-#@app.route('/robin_login', methods=['GET', 'POST'])
-#def robin_login():
+# Define route for login
+@app.route('/robin_login')
+def robin_login():
+    return render_template('robin_login.html')
+
+#TODO 
+@app.route('/robin_login_auth', methods=['GET', 'POST'])
+def robin_login_auth():
 #    USERNAME = input("Enter Robinhood Username: ")
 #    PASS = getpass("Enter Robinhood Password: ")
-#    try:
-#        robin.login(USERNAME, PASS, store_session=False)
-#        return redirect(url_for('home'))
-#    except Exception:
-#        # print("Invalid login attempt to Robinhood.")
-#        # print("Attempts left: {}".format((3 - attempt - 1)))
-#        error = 'Invalid username or password'
-#        return render_template('login.html', error=error)
+    username = request.form['username']
+    password = request.form['password']
+    print("USERNAME *(*********",username)
+    try:
+        robin.login(username, password, store_session=False)
+        #TODO TEMP to render to index
+        return render_template('index.html', error=error)
+        # return redirect(url_for('home'))
+    except Exception:
+        # print("Invalid login attempt to Robinhood.")
+        # print("Attempts left: {}".format((3 - attempt - 1)))
+        error = 'Invalid username or password'
+        return render_template('robin_login.html', error=error)
 
 #GENERIC USER CODE#
 
@@ -62,38 +73,38 @@ def cus_login_auth():
 		error = 'Invalid login or email'
 		return render_template('generic_login.html', error=error)
 
-@app.route('/generic_register', methods=['GET', 'POST'])
-def cus_register():
-	return render_template('generic_register.html')
+# @app.route('/generic_register', methods=['GET', 'POST'])
+# def cus_register():
+# 	return render_template('generic_register.html')
 
-@app.route('/generic_register_auth', methods=['GET', 'POST'])
-def generic_register_auth():
-    email = request.form['email']
-    cursor = conn.cursor()
-    query = 'SELECT * FROM users WHERE email = %s'
-    cursor.execute(query, (email))
-    data = cursor.fetchone()
-    error = None
-    if(data):
-        #If the previous query returns data, then user exists
-        error = "This user already exists! Login instead."
-        return render_template('generic_register.html', error = error)
-    else:
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-        ins = '''INSERT INTO user (name,email,password) VALUES (%s,%s,MD5(%s))'''
-        cursor.execute(ins, (name,email,password))
-        conn.commit()
-        cursor.close()
-        return redirect('/generic_login')
+# @app.route('/generic_register_auth', methods=['GET', 'POST'])
+# def generic_register_auth():
+#     email = request.form['email']
+#     cursor = conn.cursor()
+#     query = 'SELECT * FROM users WHERE email = %s'
+#     cursor.execute(query, (email))
+#     data = cursor.fetchone()
+#     error = None
+#     if(data):
+#         #If the previous query returns data, then user exists
+#         error = "This user already exists! Login instead."
+#         return render_template('generic_register.html', error = error)
+#     else:
+#         name = request.form['name']
+#         email = request.form['email']
+#         password = request.form['password']
+#         ins = '''INSERT INTO user (name,email,password) VALUES (%s,%s,MD5(%s))'''
+#         cursor.execute(ins, (name,email,password))
+#         conn.commit()
+#         cursor.close()
+#         return redirect('/generic_login')
 
 
-@app.route('/home', methods=['GET', 'POST'])
-def homepage():
-    #Jasmine's code here: 
-    email = session['username']
-    return render_template('home.html')
+# @app.route('/home', methods=['GET', 'POST'])
+# def homepage():
+#     #Jasmine's code here: 
+#     email = session['username']
+#     return render_template('home.html')
 
 
 if __name__ == "__main__":
