@@ -14,11 +14,14 @@
   - makes the "make tests" unit tests in the SoftEng repository
   - commits and pushes all modifications
 
-  make_dev_env
-  - Running this will install all of the requirements from the requirements-dev.txt file.
+  make dev_env
+  - Running this will install all of the requirements from the requirements-dev.txt file, requirements.txt and the heroku requirements file. 
 
   make tests 
   - makes unit tests in the SoftEng repository 
+
+  make deploy
+  - runs ./venv/app/app.py which will run MySQL database and Heroku (if logged in)
 
   Run Heroku 
   - Its located in the venv/ folder (make sure to be logged in)
@@ -34,14 +37,24 @@
   - Start Servers on MAMP
   - Have commands run in Create.sql
   - Have app.py run (either on CLI or via tests)
-  - Located on Port 5000
+  - Located on Port 5000 (or your own defined port)
 
-# Actionable Requirements
-  - Create User (automate signing into all of their chosen finanical accounts using key pairs) 
+
+## Run App 
+  - clone repo
+  - Go through SetUp 
+    - make dev_env
+  - heroku login 
+  - WAMP login for access to database and local host
+  - make deploy (or navigate to ./venv and heroku local web)
+
+## Actionable Requirements
+  - Create User (automate signing into all of their chosen finanical accounts using key pairs through MySQL database with SHA hashing) 
   - Edit User (account, finanical accounts, saved lists of tickers) 
   - Delete User
   - Aggregate stock data across user profile (select accounts, tickers, ratios, and other algorithmic statistics)
-  - Visualize stocks portfolio (graphical) m
+  - Visualize stocks portfolio (graphical)
+  - Save Stock (save to a wishlist or another list for their convenience)
 
 
 ## GOALS
